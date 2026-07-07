@@ -3,20 +3,34 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <meta name="description" content="Hamburg Branch Operations Management System - Daily checklist and audit tracking" />
+  <meta name="description" content="Truist Hamburg Branch Operations Management System - Daily checklist and audit tracking" />
   <meta name="theme-color" content="#2e1a47" />
-  <title>Hamburg Branch Operations</title>
+  <title>Truist Hamburg Branch Operations</title>
   <link rel="stylesheet" href="styles.css" />
   <link rel="manifest" href="manifest.json" />
-  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 180 180'><rect fill='%232e1a47' width='180' height='180'/><text x='50%' y='50%' font-size='80' font-weight='bold' fill='white' text-anchor='middle' dominant-baseline='central'>HB</text></svg>" />
+  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 180 180'><defs><linearGradient id='grad' x1='0%' y1='0%' x2='100%' y2='100%'><stop offset='0%' style='stop-color:%232e1a47;stop-opacity:1' /><stop offset='100%' style='stop-color:%236f4bb2;stop-opacity:1' /></linearGradient></defs><rect fill='url(%23grad)' width='180' height='180'/><text x='90' y='90' font-size='100' font-weight='bold' fill='%23f6b900' text-anchor='middle' dominant-baseline='central'>T</text></svg>" />
 </head>
 <body>
   <a class="skip-link" href="#main">Skip to main content</a>
 
   <header class="topbar">
-    <div>
-      <p class="eyebrow">Hamburg Branch</p>
-      <h1>Operations Command Center</h1>
+    <div class="header-brand">
+      <p class="eyebrow">Truist</p>
+      <div class="brand-logo">
+        <svg width="40" height="40" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <defs>
+            <linearGradient id="logo-grad" x1="0%" y1="0%" x2="100%" y2="100%">
+              <stop offset="0%" style="stop-color:#6f4bb2;stop-opacity:1" />
+              <stop offset="100%" style="stop-color:#f6b900;stop-opacity:1" />
+            </linearGradient>
+          </defs>
+          <rect x="2" y="2" width="28" height="28" fill="url(#logo-grad)" rx="4"/>
+          <rect x="8" y="8" width="5" height="5" fill="white"/>
+          <rect x="15" y="8" width="5" height="5" fill="white"/>
+          <rect x="22" y="8" width="5" height="5" fill="white"/>
+        </svg>
+        <h1>Operations Command Center</h1>
+      </div>
     </div>
     <div class="date-card" aria-live="polite">
       <span id="todayLabel">Today</span>
@@ -106,7 +120,7 @@
       <section id="audit" class="screen">
         <div class="section-title">
           <h2>Audit Log</h2>
-          <p>Every completion and reset is timestamped locally in this prototype.</p>
+          <p>Complete activity history with timestamps for compliance and reporting.</p>
         </div>
         <div class="actions">
           <button id="exportBtn" class="primary-btn">Export Audit CSV</button>
@@ -124,6 +138,10 @@
       </section>
     </main>
   </div>
+
+  <footer class="footer">
+    <p>&copy; 2026 Truist Financial Corporation. All rights reserved. Hamburg Branch Operations Management System.</p>
+  </footer>
 
   <script src="app.js"></script>
   <script>
