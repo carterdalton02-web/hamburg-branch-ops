@@ -1,0 +1,135 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="description" content="Hamburg Branch Operations Management System - Daily checklist and audit tracking" />
+  <meta name="theme-color" content="#2e1a47" />
+  <title>Hamburg Branch Operations</title>
+  <link rel="stylesheet" href="styles.css" />
+  <link rel="manifest" href="manifest.json" />
+  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 180 180'><rect fill='%232e1a47' width='180' height='180'/><text x='50%' y='50%' font-size='80' font-weight='bold' fill='white' text-anchor='middle' dominant-baseline='central'>HB</text></svg>" />
+</head>
+<body>
+  <a class="skip-link" href="#main">Skip to main content</a>
+
+  <header class="topbar">
+    <div>
+      <p class="eyebrow">Hamburg Branch</p>
+      <h1>Operations Command Center</h1>
+    </div>
+    <div class="date-card" aria-live="polite">
+      <span id="todayLabel">Today</span>
+      <strong id="completionPercent">0%</strong>
+      <span>complete</span>
+    </div>
+  </header>
+
+  <div class="layout">
+    <nav class="sidebar" aria-label="Primary navigation">
+      <button class="nav-btn active" data-screen="dashboard">Dashboard</button>
+      <button class="nav-btn" data-screen="closing">Daily Closing</button>
+      <button class="nav-btn" data-screen="champion">Ops Champion</button>
+      <button class="nav-btn" data-screen="brinks">Brinks Workflow</button>
+      <button class="nav-btn" data-screen="vault">Vault Controls</button>
+      <button class="nav-btn" data-screen="audit">Audit Log</button>
+    </nav>
+
+    <main id="main" tabindex="-1">
+      <section id="dashboard" class="screen active-screen">
+        <div class="section-title">
+          <h2>Today's Branch Status</h2>
+          <p>Live view of operational readiness and incomplete controls.</p>
+        </div>
+
+        <div class="cards">
+          <article class="metric-card">
+            <span>Closing Checklist</span>
+            <strong id="closingMetric">0%</strong>
+            <progress id="closingProgress" max="100" value="0"></progress>
+          </article>
+          <article class="metric-card">
+            <span>Operations Champion</span>
+            <strong id="championMetric">0%</strong>
+            <progress id="championProgress" max="100" value="0"></progress>
+          </article>
+          <article class="metric-card">
+            <span>Brinks Workflow</span>
+            <strong id="brinksMetric">0%</strong>
+            <progress id="brinksProgress" max="100" value="0"></progress>
+          </article>
+          <article class="metric-card">
+            <span>Vault Controls</span>
+            <strong id="vaultMetric">0%</strong>
+            <progress id="vaultProgress" max="100" value="0"></progress>
+          </article>
+        </div>
+
+        <section class="panel">
+          <h3>Open Items</h3>
+          <ul id="openItems" class="open-list"></ul>
+        </section>
+      </section>
+
+      <section id="closing" class="screen">
+        <div class="section-title">
+          <h2>Daily Closing Checklist</h2>
+          <p>Assigned teammate sections with completion timestamps.</p>
+        </div>
+        <div id="closingChecklist" class="task-grid"></div>
+      </section>
+
+      <section id="champion" class="screen">
+        <div class="section-title">
+          <h2>Operations Champion Guide</h2>
+          <p>Daily and weekly review items converted from the binder.</p>
+        </div>
+        <div id="championChecklist" class="task-grid"></div>
+      </section>
+
+      <section id="brinks" class="screen">
+        <div class="section-title">
+          <h2>Brinks Workflow</h2>
+          <p>Step-by-step control workflow with dual-control documentation.</p>
+        </div>
+        <div id="brinksChecklist" class="task-grid"></div>
+      </section>
+
+      <section id="vault" class="screen">
+        <div class="section-title">
+          <h2>Vault Controls</h2>
+          <p>Daily vault custody, balancing, and shipment readiness checks.</p>
+        </div>
+        <div id="vaultChecklist" class="task-grid"></div>
+      </section>
+
+      <section id="audit" class="screen">
+        <div class="section-title">
+          <h2>Audit Log</h2>
+          <p>Every completion and reset is timestamped locally in this prototype.</p>
+        </div>
+        <div class="actions">
+          <button id="exportBtn" class="primary-btn">Export Audit CSV</button>
+          <button id="resetBtn" class="secondary-btn">Reset Demo Data</button>
+        </div>
+        <div class="table-wrap">
+          <table>
+            <caption>Checklist activity</caption>
+            <thead>
+              <tr><th>Date/Time</th><th>Area</th><th>Task</th><th>Completed By</th><th>Status</th></tr>
+            </thead>
+            <tbody id="auditTable"></tbody>
+          </table>
+        </div>
+      </section>
+    </main>
+  </div>
+
+  <script src="app.js"></script>
+  <script>
+    if ('serviceWorker' in navigator) {
+      navigator.serviceWorker.register('sw.js').catch(() => {});
+    }
+  </script>
+</body>
+</html>
