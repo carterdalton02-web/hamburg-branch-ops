@@ -1,7 +1,7 @@
 {
-  "name": "Hamburg Branch Operations",
-  "short_name": "HBOMS",
-  "description": "Daily operations checklist and audit tracking for Hamburg Branch",
+  "name": "Truist Hamburg Branch Operations",
+  "short_name": "Truist HBOMS",
+  "description": "Daily operations checklist and audit tracking for Truist Hamburg Branch",
   "start_url": "/",
   "display": "standalone",
   "background_color": "#ffffff",
@@ -9,13 +9,13 @@
   "orientation": "portrait-primary",
   "icons": [
     {
-      "src": "data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 192 192'><rect fill='%232e1a47' width='192' height='192'/><text x='50%' y='50%' font-size='96' font-weight='bold' fill='white' text-anchor='middle' dominant-baseline='central'>HB</text></svg>",
+      "src": "data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 192 192'><defs><linearGradient id='grad' x1='0%' y1='0%' x2='100%' y2='100%'><stop offset='0%' style='stop-color:%232e1a47;stop-opacity:1' /><stop offset='100%' style='stop-color:%236f4bb2;stop-opacity:1' /></linearGradient></defs><rect fill='url(%23grad)' width='192' height='192'/><rect x='24' y='24' width='36' height='36' fill='%23f6b900' rx='4'/><rect x='72' y='24' width='36' height='36' fill='%23f6b900' rx='4'/><rect x='120' y='24' width='36' height='36' fill='%23f6b900' rx='4'/><text x='96' y='120' font-size='48' font-weight='bold' fill='white' text-anchor='middle'>T</text></svg>",
       "sizes": "192x192",
       "type": "image/svg+xml",
       "purpose": "any"
     },
     {
-      "src": "data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 512 512'><rect fill='%232e1a47' width='512' height='512'/><text x='50%' y='50%' font-size='256' font-weight='bold' fill='white' text-anchor='middle' dominant-baseline='central'>HB</text></svg>",
+      "src": "data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 512 512'><defs><linearGradient id='grad2' x1='0%' y1='0%' x2='100%' y2='100%'><stop offset='0%' style='stop-color:%232e1a47;stop-opacity:1' /><stop offset='100%' style='stop-color:%236f4bb2;stop-opacity:1' /></linearGradient></defs><rect fill='url(%23grad2)' width='512' height='512'/><rect x='64' y='64' width='96' height='96' fill='%23f6b900' rx='12'/><rect x='192' y='64' width='96' height='96' fill='%23f6b900' rx='12'/><rect x='320' y='64' width='96' height='96' fill='%23f6b900' rx='12'/><text x='256' y='340' font-size='128' font-weight='bold' fill='white' text-anchor='middle'>T</text></svg>",
       "sizes": "512x512",
       "type": "image/svg+xml",
       "purpose": "any maskable"
@@ -23,27 +23,43 @@
   ],
   "screenshots": [
     {
-      "src": "data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 540 720'><rect fill='%23f7f4fb' width='540' height='720'/><rect fill='%232e1a47' width='540' height='120'/><text x='270' y='60' font-size='32' font-weight='bold' fill='white' text-anchor='middle' dominant-baseline='central'>HBOMS</text></svg>",
+      "src": "data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 540 720'><defs><linearGradient id='header' x1='0%' y1='0%' x2='100%' y2='100%'><stop offset='0%' style='stop-color:%232e1a47;stop-opacity:1' /><stop offset='100%' style='stop-color:%236f4bb2;stop-opacity:1' /></linearGradient></defs><rect fill='%23f7f4fb' width='540' height='720'/><rect fill='url(%23header)' width='540' height='120'/><text x='270' y='60' font-size='32' font-weight='bold' fill='white' text-anchor='middle' dominant-baseline='central'>Truist HBOMS</text><rect y='120' width='540' height='600' fill='%23f7f4fb'/><rect x='20' y='140' width='500' height='100' rx='8' fill='white' stroke='%236f4bb2' stroke-width='2'/><text x='30' y='165' font-size='18' font-weight='bold' fill='%232e1a47'>Operations Status</text><text x='30' y='195' font-size='14' fill='%23625a70'>4 active areas</text></svg>",
       "sizes": "540x720",
       "type": "image/svg+xml",
       "form_factor": "narrow"
     }
   ],
-  "categories": ["productivity"],
+  "categories": ["productivity", "business"],
   "shortcuts": [
     {
       "name": "Dashboard",
       "short_name": "Dashboard",
       "description": "View today's branch status",
       "url": "/?screen=dashboard",
-      "icons": [{"src": "data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 96 96'><rect fill='%232e1a47' width='96' height='96'/><text x='50%' y='50%' font-size='48' font-weight='bold' fill='white' text-anchor='middle' dominant-baseline='central'>D</text></svg>", "sizes": "96x96"}]
+      "icons": [{
+        "src": "data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 96 96'><rect fill='%232e1a47' width='96' height='96' rx='16'/><text x='48' y='48' font-size='48' font-weight='bold' fill='white' text-anchor='middle' dominant-baseline='central'>📊</text></svg>",
+        "sizes": "96x96"
+      }]
     },
     {
       "name": "Daily Closing",
       "short_name": "Closing",
       "description": "Daily closing checklist",
       "url": "/?screen=closing",
-      "icons": [{"src": "data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 96 96'><rect fill='%232e1a47' width='96' height='96'/><text x='50%' y='50%' font-size='48' font-weight='bold' fill='white' text-anchor='middle' dominant-baseline='central'>C</text></svg>", "sizes": "96x96"}]
+      "icons": [{
+        "src": "data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 96 96'><rect fill='%236f4bb2' width='96' height='96' rx='16'/><text x='48' y='48' font-size='48' font-weight='bold' fill='white' text-anchor='middle' dominant-baseline='central'>✓</text></svg>",
+        "sizes": "96x96"
+      }]
+    },
+    {
+      "name": "Audit Log",
+      "short_name": "Audit",
+      "description": "View activity history",
+      "url": "/?screen=audit",
+      "icons": [{
+        "src": "data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 96 96'><rect fill='%23f6b900' width='96' height='96' rx='16'/><text x='48' y='48' font-size='48' font-weight='bold' fill='%232e1a47' text-anchor='middle' dominant-baseline='central'>📋</text></svg>",
+        "sizes": "96x96"
+      }]
     }
   ]
 }
