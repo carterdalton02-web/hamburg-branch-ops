@@ -1,0 +1,49 @@
+{
+  "name": "Hamburg Branch Operations",
+  "short_name": "HBOMS",
+  "description": "Daily operations checklist and audit tracking for Hamburg Branch",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#ffffff",
+  "theme_color": "#2e1a47",
+  "orientation": "portrait-primary",
+  "icons": [
+    {
+      "src": "data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 192 192'><rect fill='%232e1a47' width='192' height='192'/><text x='50%' y='50%' font-size='96' font-weight='bold' fill='white' text-anchor='middle' dominant-baseline='central'>HB</text></svg>",
+      "sizes": "192x192",
+      "type": "image/svg+xml",
+      "purpose": "any"
+    },
+    {
+      "src": "data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 512 512'><rect fill='%232e1a47' width='512' height='512'/><text x='50%' y='50%' font-size='256' font-weight='bold' fill='white' text-anchor='middle' dominant-baseline='central'>HB</text></svg>",
+      "sizes": "512x512",
+      "type": "image/svg+xml",
+      "purpose": "any maskable"
+    }
+  ],
+  "screenshots": [
+    {
+      "src": "data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 540 720'><rect fill='%23f7f4fb' width='540' height='720'/><rect fill='%232e1a47' width='540' height='120'/><text x='270' y='60' font-size='32' font-weight='bold' fill='white' text-anchor='middle' dominant-baseline='central'>HBOMS</text></svg>",
+      "sizes": "540x720",
+      "type": "image/svg+xml",
+      "form_factor": "narrow"
+    }
+  ],
+  "categories": ["productivity"],
+  "shortcuts": [
+    {
+      "name": "Dashboard",
+      "short_name": "Dashboard",
+      "description": "View today's branch status",
+      "url": "/?screen=dashboard",
+      "icons": [{"src": "data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 96 96'><rect fill='%232e1a47' width='96' height='96'/><text x='50%' y='50%' font-size='48' font-weight='bold' fill='white' text-anchor='middle' dominant-baseline='central'>D</text></svg>", "sizes": "96x96"}]
+    },
+    {
+      "name": "Daily Closing",
+      "short_name": "Closing",
+      "description": "Daily closing checklist",
+      "url": "/?screen=closing",
+      "icons": [{"src": "data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 96 96'><rect fill='%232e1a47' width='96' height='96'/><text x='50%' y='50%' font-size='48' font-weight='bold' fill='white' text-anchor='middle' dominant-baseline='central'>C</text></svg>", "sizes": "96x96"}]
+    }
+  ]
+}
