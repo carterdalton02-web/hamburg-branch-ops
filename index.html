@@ -3,40 +3,58 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <meta name="description" content="Truist Hamburg Branch Operations Management System - Daily checklist and audit tracking" />
+  <meta name="description" content="Hamburg Branch Operations Management System - Daily checklist and audit tracking" />
   <meta name="theme-color" content="#2e1a47" />
-  <title>Truist Hamburg Branch Operations</title>
+  <title>Hamburg Branch Operations</title>
   <link rel="stylesheet" href="styles.css" />
   <link rel="manifest" href="manifest.json" />
-  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 180 180'><defs><linearGradient id='grad' x1='0%' y1='0%' x2='100%' y2='100%'><stop offset='0%' style='stop-color:%232e1a47;stop-opacity:1' /><stop offset='100%' style='stop-color:%236f4bb2;stop-opacity:1' /></linearGradient></defs><rect fill='url(%23grad)' width='180' height='180'/><text x='90' y='90' font-size='100' font-weight='bold' fill='%23f6b900' text-anchor='middle' dominant-baseline='central'>T</text></svg>" />
+  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 180 180'><rect fill='%232e1a47' width='180' height='180'/><text x='50%' y='50%' font-size='90' font-weight='bold' fill='white' text-anchor='middle' dominant-baseline='middle'>H</text></svg>" />
 </head>
 <body>
   <a class="skip-link" href="#main">Skip to main content</a>
 
-  <header class="topbar">
-    <div class="header-brand">
-      <p class="eyebrow">Truist</p>
-      <div class="brand-logo">
-        <svg width="40" height="40" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
-          <defs>
-            <linearGradient id="logo-grad" x1="0%" y1="0%" x2="100%" y2="100%">
-              <stop offset="0%" style="stop-color:#6f4bb2;stop-opacity:1" />
-              <stop offset="100%" style="stop-color:#f6b900;stop-opacity:1" />
-            </linearGradient>
-          </defs>
-          <rect x="2" y="2" width="28" height="28" fill="url(#logo-grad)" rx="4"/>
-          <rect x="8" y="8" width="5" height="5" fill="white"/>
-          <rect x="15" y="8" width="5" height="5" fill="white"/>
-          <rect x="22" y="8" width="5" height="5" fill="white"/>
-        </svg>
-        <h1>Operations Command Center</h1>
+  <!-- Team Assignment Modal -->
+  <div id="assignmentModal" class="modal">
+    <div class="modal-content">
+      <h2>Assign Tasks to Teammates</h2>
+      <p>Select a teammate for each role. You can change assignments anytime.</p>
+      
+      <div class="assignment-form">
+        <div class="assignment-group">
+          <label for="closingAssign">Daily Closing Lead</label>
+          <input type="text" id="closingAssign" placeholder="e.g., Zach" maxlength="50" />
+        </div>
+        <div class="assignment-group">
+          <label for="championAssign">Operations Champion</label>
+          <input type="text" id="championAssign" placeholder="e.g., Abbie" maxlength="50" />
+        </div>
+        <div class="assignment-group">
+          <label for="brinksAssign">Brinks Coordinator</label>
+          <input type="text" id="brinksAssign" placeholder="e.g., Nash" maxlength="50" />
+        </div>
+        <div class="assignment-group">
+          <label for="vaultAssign">Vault Manager</label>
+          <input type="text" id="vaultAssign" placeholder="e.g., Carter" maxlength="50" />
+        </div>
       </div>
+
+      <div class="modal-actions">
+        <button id="confirmAssignment" class="primary-btn">Start Checklist</button>
+      </div>
+    </div>
+  </div>
+
+  <header class="topbar">
+    <div>
+      <p class="eyebrow">Hamburg Branch</p>
+      <h1>Operations Command Center</h1>
     </div>
     <div class="date-card" aria-live="polite">
       <span id="todayLabel">Today</span>
       <strong id="completionPercent">0%</strong>
       <span>complete</span>
     </div>
+    <button id="changeTeamBtn" class="team-btn" title="Change team assignments">Change Team</button>
   </header>
 
   <div class="layout">
@@ -120,7 +138,7 @@
       <section id="audit" class="screen">
         <div class="section-title">
           <h2>Audit Log</h2>
-          <p>Complete activity history with timestamps for compliance and reporting.</p>
+          <p>Every completion and reset is timestamped locally in this prototype.</p>
         </div>
         <div class="actions">
           <button id="exportBtn" class="primary-btn">Export Audit CSV</button>
@@ -138,10 +156,6 @@
       </section>
     </main>
   </div>
-
-  <footer class="footer">
-    <p>&copy; 2026 Truist Financial Corporation. All rights reserved. Hamburg Branch Operations Management System.</p>
-  </footer>
 
   <script src="app.js"></script>
   <script>

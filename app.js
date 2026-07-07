@@ -1,7 +1,7 @@
 const DATA = {
   closing: [
     {
-      owner: "Zach",
+      owner: "Closing Lead",
       frequency: "Daily",
       tasks: [
         "Verify all TMs have signed off all computers.",
@@ -10,7 +10,7 @@ const DATA = {
       ]
     },
     {
-      owner: "Abbie",
+      owner: "Secondary Closing",
       frequency: "Daily",
       tasks: [
         "Balance the TCR.",
@@ -19,7 +19,7 @@ const DATA = {
       ]
     },
     {
-      owner: "Nash",
+      owner: "Tertiary Closing",
       frequency: "Daily",
       tasks: [
         "Verify nothing is left on any printers, including the supply room.",
@@ -28,7 +28,7 @@ const DATA = {
       ]
     },
     {
-      owner: "Carter",
+      owner: "Final Closing",
       frequency: "Daily",
       tasks: [
         "Secure all shred and ensure the shred bin has been emptied.",
@@ -83,17 +83,14 @@ const DATA = {
 const state = JSON.parse(localStorage.getItem("hboms-state") || "{}");
 state.checks ||= {};
 state.audit ||= [];
-state.notes ||= {};
+state.assignments ||= {};
 
 const screens = document.querySelectorAll(".screen");
 const navButtons = document.querySelectorAll(".nav-btn");
+const modal = document.getElementById("assignmentModal");
 
 function key(area, owner, task) {
   return `${area}::${owner}::${task}`;
-}
-
-function notesKey(area, owner) {
-  return `notes-${area}-${owner}`;
 }
 
 function save() {
@@ -104,16 +101,51 @@ function nowStamp() {
   return new Date().toLocaleString();
 }
 
+function showAssignmentModal() {
+  modal.classList.add("active");
+  document.getElementById("closingAssign").value = state.assignments.closing || "";
+  document.getElementById("championAssign").value = state.assignments.champion || "";
+  document.getElementById("brinksAssign").value = state.assignments.brinks || "";
+  document.getElementById("vaultAssign").value = state.assignments.vault || "";
+}
+
+function hideAssignmentModal() {
+  modal.classList.remove("active");
+}
+
+function saveAssignments() {
+  state.assignments.closing = document.getElementById("closingAssign").value.trim() || "Closing Lead";
+  state.assignments.champion = document.getElementById("championAssign").value.trim() || "Operations Champion";
+  state.assignments.brinks = document.getElementById("brinksAssign").value.trim() || "Brinks Coordinator";
+  state.assignments.vault = document.getElementById("vaultAssign").value.trim() || "Vault Manager";
+  save();
+  hideAssignmentModal();
+  renderAll();
+}
+
+function getAssignedName(area) {
+  const roleMap = {
+    closing: state.assignments.closing || "Closing Lead",
+    champion: state.assignments.champion || "Operations Champion",
+    brinks: state.assignments.brinks || "Brinks Coordinator",
+    vault: state.assignments.vault || "Vault Manager"
+  };
+  return roleMap[area] || "Team Member";
+}
+
 function renderTaskArea(area, targetId) {
   const target = document.getElementById(targetId);
   target.innerHTML = "";
+  
+  const assignedName = getAssignedName(area);
+  
   DATA[area].forEach(group => {
     const card = document.createElement("article");
     card.className = "task-card";
     card.innerHTML = `
       <header>
         <div>
-          <h3>${group.owner}</h3>
+          <h3>${assignedName}</h3>
           <span class="badge">${group.frequency}</span>
         </div>
       </header>
@@ -137,7 +169,7 @@ function renderTaskArea(area, targetId) {
           stamp: nowStamp(),
           area,
           task,
-          owner: group.owner,
+          owner: assignedName,
           status: input.checked ? "Completed" : "Reset"
         });
         save();
@@ -146,18 +178,13 @@ function renderTaskArea(area, targetId) {
       card.appendChild(row);
     });
 
-    const nk = notesKey(area, group.owner);
     const notes = document.createElement("div");
     notes.className = "notes";
+    const notesId = `notes-${area}-${group.owner.replaceAll(" ", "-")}`;
     notes.innerHTML = `
-      <label for="${nk}">Notes</label>
-      <textarea id="${nk}" placeholder="Add notes, exception details, or follow-up items.">${state.notes[nk] || ""}</textarea>
+      <label for="${notesId}">Notes</label>
+      <textarea id="${notesId}" placeholder="Add notes, exception details, or follow-up items."></textarea>
     `;
-    const textarea = notes.querySelector("textarea");
-    textarea.addEventListener("blur", () => {
-      state.notes[nk] = textarea.value;
-      save();
-    });
     card.appendChild(notes);
     target.appendChild(card);
   });
@@ -185,7 +212,7 @@ function renderMetrics() {
     groups.forEach(group => {
       group.tasks.forEach(task => {
         const id = key(area, group.owner, task);
-        if (!state.checks[id]?.done) open.push(`${group.owner}: ${task}`);
+        if (!state.checks[id]?.done) open.push(`${getAssignedName(area)}: ${task}`);
       });
     });
   });
@@ -209,6 +236,7 @@ function renderAll() {
   renderAudit();
 }
 
+// Event Listeners
 navButtons.forEach(btn => {
   btn.addEventListener("click", () => {
     navButtons.forEach(b => b.classList.remove("active"));
@@ -226,8 +254,12 @@ document.getElementById("todayLabel").textContent = new Date().toLocaleDateStrin
   year: "numeric"
 });
 
+document.getElementById("confirmAssignment").addEventListener("click", saveAssignments);
+
+document.getElementById("changeTeamBtn").addEventListener("click", showAssignmentModal);
+
 document.getElementById("resetBtn").addEventListener("click", () => {
-  if (!confirm("Reset all checklist data?")) return;
+  if (!confirm("Reset all demo checklist data?")) return;
   localStorage.removeItem("hboms-state");
   location.reload();
 });
@@ -244,4 +276,9 @@ document.getElementById("exportBtn").addEventListener("click", () => {
   URL.revokeObjectURL(url);
 });
 
-renderAll();
+// Initialize
+if (!state.assignments.closing) {
+  showAssignmentModal();
+} else {
+  renderAll();
+}
